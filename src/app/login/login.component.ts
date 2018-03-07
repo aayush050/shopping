@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     console.log(pass);
     if (user == pass && user != '' && pass != '') {
 
-      this.route.navigate(['/web']);
+      this.route.navigate(['/web/dashboard']);
     }
     else if (user == '' && pass == '') {
       window.alert("Please Fill The Username And Password");

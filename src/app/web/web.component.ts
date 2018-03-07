@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
     
 
   <ul>
-  <li ><img src="dfhn.jpg" alt='logo' ></li>
+  <li ><img src="dfhn.jpg" alt='LOGO' ></li>
   <li><a (click)="goToDashboard()" class="active">Dashboard</a></li>
   <li><a (click)="goToAllProduct()">All Products</a></li>
   <li><a (click)="goToSearch()" >Search</a></li>
@@ -15,9 +15,9 @@ import { Router } from '@angular/router';
   <li class="align"><a (click)="logout()">Logout</a></li>
   <li class="align"><a (click)="goToProfile()">Profile</a> </li>
 </ul>
-<div>
+
 <router-outlet></router-outlet>
-</div>
+
   `,
   styles: [
 `
@@ -29,6 +29,7 @@ img {
       
       text-decoration: none;
 }
+
 .align{
   float:right;
 }
@@ -50,12 +51,14 @@ img {
       color: white;
       text-align: center;
       padding: 14px 16px;
-      
+      font-family: Arial, Helvetica, sans-serif;
       text-decoration: none;
+      font-size: 15px;
   }
   
   li a:hover {
       background-color: #111;
+      cursor:pointer;
   }
 `
   ]
@@ -72,7 +75,7 @@ export class WebComponent implements OnInit {
   }
   goToAllProduct()
   {
-    this.route.navigate(['/web/allproduct']);
+    this.route.navigate(['/web/products']);
   }
   goToSearch()
   {

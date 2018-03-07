@@ -12,7 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AllproductComponent } from './allproduct/allproduct.component';
 import { SearchComponent } from './search/search.component';
 import { MycartComponent } from './mycart/mycart.component';
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { ResultComponent } from './result/result.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProfileComponent } from './profile/profile.component'
     AllproductComponent,
     SearchComponent,
     MycartComponent,
-    ProfileComponent
+    ProfileComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

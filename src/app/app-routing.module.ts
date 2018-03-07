@@ -16,7 +16,7 @@ const routes: Routes = [
   {path:'web',component:WebComponent,
   children: [
     { path: 'dashboard', component: DashboardComponent },
-    { path: 'allproduct', component: AllproductComponent },
+    { path: 'products', component: AllproductComponent },
     { path: 'search', component: SearchComponent },
     { path: 'mycart', component: MycartComponent },
     {path: 'profile',component:ProfileComponent}
