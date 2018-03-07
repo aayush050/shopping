@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../products.service';
 
 @Component({
  selector: 'app-allproduct',
@@ -6,12 +7,12 @@ import { Component, OnInit } from '@angular/core';
  
  
 <h2 float="right">PRODUCTS</h2>
-<div class="card" >
-<img src="http://cdn.shopify.com/s/files/1/1718/8809/products/SUPREME_x_LOUIS_VUITTON_Box_Tee_5_grande.jpg?v=1489482614" alt="shoe" style="width:100%">
-<h3>SUPREME</h3>
-<p class="title">Product Description</p>
-<p>Product Price</p>
-
+<div *ngFor="let watch of watches" class="card" >
+<img src="{{watch.url}}" alt="shoe">
+<h3>{{watch.name}}</h3>
+<p class="title">{{watch.desc}}</p>
+<p>{{watch.price}}</p>
+<p>{{watch.button}}</p>
 <p><button (click)="onclick()" *ngIf="change">Add to Cart</button></p>
 <p><button (click)="onclick()" *ngIf="!change">Remove from Cart</button></p>
 </div>
@@ -27,8 +28,8 @@ import { Component, OnInit } from '@angular/core';
  font-family: arial;
  float :left;
  background-color:#DCDCDC ;
- margin-left: 60px;
- 
+ margin-left: 120px;
+ margin-top: 50px;
 
  
  }
@@ -42,7 +43,7 @@ import { Component, OnInit } from '@angular/core';
  img{
  width: 250px;
  height: 150px;
- transition: transform .3s;
+ transition: transform .2s;
  }
  div{
  
@@ -99,12 +100,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllproductComponent implements OnInit {
  public change=true;
- constructor() { }
+ public watches=[];
+ constructor(private products:ProductsService) { }
 
  ngOnInit() {
- }
- onclick(){
- this.change=false;
+ this.watches=this.products.getwatch();
  }
 
 }

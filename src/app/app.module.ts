@@ -14,7 +14,7 @@ import { SearchComponent } from './search/search.component';
 import { MycartComponent } from './mycart/mycart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResultComponent } from './result/result.component'
-
+import { ProductsService } from './products.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +33,7 @@ import { ResultComponent } from './result/result.component'
     FormsModule,
     CommonModule
   ],
-  providers: [],
+  providers: [ProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

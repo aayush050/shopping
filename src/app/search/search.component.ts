@@ -83,7 +83,7 @@ import { Component, OnInit } from '@angular/core';
  position: absolute;
  display: none;
 }
-.color input:checked ~ .checkmark {
+.color  input:checked ~ .checkmark {
   background-color: black;
  `]
 })
