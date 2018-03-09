@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProductsService } from '../products.service';
 
 @Component({
- selector: 'app-web',
- template: `
+    selector: 'app-web',
+    template: `
  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
  <ul>
  <li ><img src="dfhn.jpg" alt='LOGO' ></li>
  <li><a (click)="goToDashboard()" class="active">Dashboard</a></li>
- <li><a (click)="goToAllProduct()">All Products<span class="w3-badge w3-red">6</span></a></li>
+ <li><a (click)="goToAllProduct()">All Products<span class="w3-badge w3-red">15</span></a></li>
  <li><a (click)="goToSearch()" >Search</a></li>
- <li><a (click)="goToMyCart()">My Cart<span class="w3-badge w3-red">6</span></a></li>
+ <li><a (click)="goToMyCart()">My Cart<span class="w3-badge w3-red">{{this.products.getcount()}}</span></a></li>
  <li class="align"><a (click)="logout()">Logout</a></li>
  <li class="align"><a (click)="goToProfile()">Profile</a> </li>
 </ul>
@@ -18,8 +19,8 @@ import { Router } from '@angular/router';
 <router-outlet></router-outlet>
 
  `,
- styles: [
-`
+    styles: [
+        `
 img {
  display: block;
  color: white;
@@ -60,38 +61,33 @@ img {
  cursor:pointer;
  }
 `
- ]
+    ]
 })
 export class WebComponent implements OnInit {
 
- constructor(private route: Router) { }
+    constructor(private route: Router, private products: ProductsService) { }
 
- ngOnInit() {
- }
- goToDashboard()
- {
- this.route.navigate(['/web/dashboard']);
- }
- goToAllProduct()
- {
- this.route.navigate(['/web/products']);
- }
- goToSearch()
- {
- this.route.navigate(['/web/search']);
- }
- goToMyCart()
- {
- this.route.navigate(['/web/mycart']);
- }
- logout()
- {
- this.route.navigate(['/login']);
- }
- goToProfile()
- {
- this.route.navigate(['/web/profile']);
- }
+    ngOnInit() {
+
+    }
+    goToDashboard() {
+        this.route.navigate(['/web/dashboard']);
+    }
+    goToAllProduct() {
+        this.route.navigate(['/web/products']);
+    }
+    goToSearch() {
+        this.route.navigate(['/web/search']);
+    }
+    goToMyCart() {
+        this.route.navigate(['/web/mycart']);
+    }
+    logout() {
+        this.route.navigate(['/login']);
+    }
+    goToProfile() {
+        this.route.navigate(['/web/profile']);
+    }
 
 
 

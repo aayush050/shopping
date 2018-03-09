@@ -2,25 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 
 @Component({
- selector: 'app-allproduct',
- template: `
+  selector: 'app-allproduct',
+  template: `
  
  
 <h2 float="right">PRODUCTS</h2>
-<div *ngFor="let watch of watches" class="card" >
-<img src="{{watch.url}}" alt="shoe">
-<h3>{{watch.name}}</h3>
-<p class="title">{{watch.desc}}</p>
-<p>{{watch.price}}</p>
-<p>{{watch.button}}</p>
-<p><button (click)="onclick()" *ngIf="change">Add to Cart</button></p>
-<p><button (click)="onclick()" *ngIf="!change">Remove from Cart</button></p>
+<div *ngFor="let prod of product" class="card" >
+<img src="{{prod.url}}" alt="shoe">
+<h3>{{prod.name}}</h3>
+<p class="title">{{prod.desc}}</p>
+<p>{{prod.price}}</p>
+<p><button (click)="addToCart(prod.name,prod.desc,prod.price)" *ngIf="change">Add to Cart</button></p>
+<p><button (click)="removefromcart()" *ngIf="!change">Remove from Cart</button></p>
 </div>
 
 
 
+
+
  `,
- styles: [`
+  styles: [`
  .card {
  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
  max-width: 300px;
@@ -99,12 +100,32 @@ import { ProductsService } from '../products.service';
  `]
 })
 export class AllproductComponent implements OnInit {
- public change=true;
- public watches=[];
- constructor(private products:ProductsService) { }
+  public change = true;
+  public product=[];
+  public count = 0;
+  price='';
+  desc='';
+  name='';
+  category="Watch";
+  constructor(private products: ProductsService) { }
 
- ngOnInit() {
- this.watches=this.products.getwatch();
- }
+  ngOnInit() {
+    this.product = this.products.getwatch();
+  }
+  addToCart(name,desc,price) {
+  
+    this.count = this.count + 1;
+    this.products.count = this.count;
+    let watchcategory = "Watch";
+    let prod = 
+    {
+      "name":name,
+      "category":watchcategory,
+      "desc":desc,
+      "price":price
+    }
 
+    this.products.mycart.push(prod);
+
+  }
 }
