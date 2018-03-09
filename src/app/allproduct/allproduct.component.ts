@@ -12,9 +12,9 @@ import { ProductsService } from '../products.service';
 <h3>{{prod.name}}</h3>
 <p class="title">{{prod.desc}}</p>
 <p>{{prod.price}}</p>
-<p><button (click)="addToCart(prod.name,prod.desc,prod.price)" *ngIf="change">Add to Cart</button></p>
-<p><button (click)="removefromcart()" *ngIf="!change">Remove from Cart</button></p>
-</div>
+<p><button (click)="addToCart(prod)" *ngIf ="!prod.isInCart">Add to Cart</button></p>
+    <p><button (click)="removeFromCart(prod)" *ngIf="prod.isInCart">Remove from Cart</button></p>
+    </div>
 
 
 
@@ -106,26 +106,33 @@ export class AllproductComponent implements OnInit {
   price='';
   desc='';
   name='';
-  category="Watch";
+  category='';
   constructor(private products: ProductsService) { }
 
   ngOnInit() {
     this.product = this.products.getwatch();
+
   }
-  addToCart(name,desc,price) {
+  addToCart(product) {
   
     this.count = this.count + 1;
     this.products.count = this.count;
-    let watchcategory = "Watch";
+   
     let prod = 
     {
-      "name":name,
-      "category":watchcategory,
-      "desc":desc,
-      "price":price
+      "name":product.name,
+      "category":product.category,
+      "desc":product.desc,
+      "price":product.price
     }
-
+    product.isInCart = true;
     this.products.mycart.push(prod);
 
+  }
+  removeFromCart(product)
+  {
+    this.count = this.count - 1;
+    this.products.count = this.count;
+    product.isInCart = false;
   }
 }

@@ -9,7 +9,7 @@ import { ProductsService } from '../products.service';
  <ul>
  <li ><img src="dfhn.jpg" alt='LOGO' ></li>
  <li><a (click)="goToDashboard()" class="active">Dashboard</a></li>
- <li><a (click)="goToAllProduct()">All Products<span class="w3-badge w3-red">15</span></a></li>
+ <li><a (click)="goToAllProduct()">All Products<span class="w3-badge w3-red">{{this.products.product.length}}</span></a></li>
  <li><a (click)="goToSearch()" >Search</a></li>
  <li><a (click)="goToMyCart()">My Cart<span class="w3-badge w3-red">{{this.products.getcount()}}</span></a></li>
  <li class="align"><a (click)="logout()">Logout</a></li>

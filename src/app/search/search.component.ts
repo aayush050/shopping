@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
+import { ProductsService } from '../products.service';
 
 @Component({
  selector: 'app-search',
@@ -6,30 +9,31 @@ import { Component, OnInit } from '@angular/core';
  <h1>Search</h1>
  <table border="0" width="250" height="120">
  <tr>
- <td class="color" width="1%"><input type="checkbox" checked="checked"></td>
+ <td class="color" width="1%"><input type="checkbox" id="footwear" [(ngModel)]=footwear ></td>
  <td class="tdcolor" width="20%"><label class="container">Footwear
  <span class="checkmark"></span>
  </label></td>
  </tr>
  <tr>
- <td class="color" width="15%"><input type="checkbox" checked="checked"></td>
+ <td class="color" width="15%"><input type="checkbox" id="watches" [(ngModel)]=watches ></td>
  <td class="tdcolor" width="100%"><label class="container">Watches
  <span class="checkmark"></span>
  </label></td>
  </tr>
  <tr>
- <td class="color" width="15%"> <input type="checkbox" checked="checked"></td>
+ <td class="color" width="15%"> <input type="checkbox" id="tshirt" [(ngModel)]=tshirt ></td>
  <td class="tdcolor" width="100%"><label class="container">TShirts
  <span class="checkmark"></span>
  </label></td>
  </tr>
  </table>
  <br>
- <button>Search</button>
+ <button (click)="goToResult()">Search</button>
 
  
  `,
- styles: [`
+styles: [
+  `
  table
  {
  position: relative;
@@ -88,10 +92,40 @@ import { Component, OnInit } from '@angular/core';
  `]
 })
 export class SearchComponent implements OnInit {
-
- constructor() { }
+  
+public footwear=false;
+public tshirt=false;
+public watches=false;
+public product=[];
+ constructor(private route:Router,private products:ProductsService) { }
 
  ngOnInit() {
+
+  
  }
 
+ goToResult()
+{
+  if(this.footwear==true && this.tshirt==true)
+  {
+    this.products.search=this.products.getCatagoryProducts("footwear");
+    this.products.search=this.products.getCatagoryProducts("tshirt");
+  }
+  
+   if(this.footwear==true)
+   {
+   this.products.search=this.products.getCatagoryProducts("footwear");
+   
+   }
+   if(this.tshirt==true)
+   {
+   this.products.search=this.products.getCatagoryProducts("tshirt");
+   }
+   if(this.watches==true)
+   {
+   this.products.search=this.products.getCatagoryProducts("watch");
+   }
+
+  this.route.navigate(['/web/result']);
+}
 }

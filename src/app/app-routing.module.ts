@@ -7,6 +7,7 @@ import { AllproductComponent } from './allproduct/allproduct.component';
 import { SearchComponent } from './search/search.component';
 import { MycartComponent } from './mycart/mycart.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ResultComponent } from './result/result.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
     { path: 'products', component: AllproductComponent },
     { path: 'search', component: SearchComponent },
     { path: 'mycart', component: MycartComponent },
-    {path: 'profile',component:ProfileComponent}
+    {path: 'profile',component:ProfileComponent},
+    {path:'result',component:ResultComponent}
 ]
 }
 
