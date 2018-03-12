@@ -11,9 +11,9 @@ import { ProductsService } from '../products.service';
 <img src="{{prod.url}}" alt="shoe">
 <h3>{{prod.name}}</h3>
 <p class="title">{{prod.desc}}</p>
-<p>{{prod.price}}</p>
+<p>$ {{prod.price}}</p>
 <p><button (click)="addToCart(prod)" *ngIf ="!prod.isInCart">Add to Cart</button></p>
-    <button (click)="removeFromCart(prod)" *ngIf="prod.isInCart">Remove from Cart</button>
+    <p><button (click)="removeFromCart(prod)" *ngIf="prod.isInCart">Remove from Cart</button></p>
     </div>
 
 
@@ -103,7 +103,7 @@ export class AllproductComponent implements OnInit {
   public change = true;
   public product=[];
   public count = 0;
-  price='';
+  price:number;
   desc='';
   name='';
   category='';
@@ -115,18 +115,10 @@ export class AllproductComponent implements OnInit {
   }
   addToCart(product) {
   
-    this.count = this.count + 1;
-    this.products.count = this.count;
+    
    
-    let prod = 
-    {
-      "name":product.name,
-      "category":product.category,
-      "desc":product.desc,
-      "price":product.price
-    }
     product.isInCart = true;
-    this.products.mycart.push(prod);
+    this.products.mycart.push(product);
     this.products.sendCount(this.products.mycart.length);
   }
   removeFromCart(product) {

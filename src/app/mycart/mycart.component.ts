@@ -21,20 +21,24 @@ import { ProductsService } from '../products.service';
  <td>{{pro.category}}</td>
  <td>{{pro.desc}}</td>
  <td>{{pro.price}}</td>
- <td><button (click)="removeRow(pro)">Remove</button></td>
+ <td><button (click)="removeRow(pro);">Remove</button></td>
 </tr>
-
- 
- 
- 
 </table>
 <br>
-  
+  <h3>Price:$ {{price}} /-</h3>
  
  
   `,
   styles: [
     `
+
+
+    h3{
+      font-family: Arial, Helvetica, sans-serif;
+
+  margin-left:600px;
+  margin-top: 100px;
+    }
 h2{ 
     
   font-family: Arial, Helvetica, sans-serif;
@@ -62,14 +66,23 @@ table:hover
 })
 export class MycartComponent implements OnInit {
   public prod = [];
+  public price:number=0;
   constructor(private products: ProductsService) { }
 
   ngOnInit() {
     this.prod = this.products.getcart();
+  
+    for(var j=0;j<this.products.getcart().length;j++)
+    {
+      this.price=this.prod[j].price+this.price;
+    }
   }
 
+
+
   removeRow(pro){	
- 
+ pro.isInCart=false;
+ this.price=this.price-pro.price;
     var index = -1;	
     var comArr = this.products.getcart();
     for( var i = 0; i < comArr.length; i++ ) {
