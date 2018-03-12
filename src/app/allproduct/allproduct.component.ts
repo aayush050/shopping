@@ -13,7 +13,7 @@ import { ProductsService } from '../products.service';
 <p class="title">{{prod.desc}}</p>
 <p>{{prod.price}}</p>
 <p><button (click)="addToCart(prod)" *ngIf ="!prod.isInCart">Add to Cart</button></p>
-    <p><button (click)="removeFromCart(prod)" *ngIf="prod.isInCart">Remove from Cart</button></p>
+    <button (click)="removeFromCart(prod)" *ngIf="prod.isInCart">Remove from Cart</button>
     </div>
 
 
@@ -110,7 +110,7 @@ export class AllproductComponent implements OnInit {
   constructor(private products: ProductsService) { }
 
   ngOnInit() {
-    this.product = this.products.getwatch();
+    this.product = this.products.getproduct();
 
   }
   addToCart(product) {
@@ -127,12 +127,21 @@ export class AllproductComponent implements OnInit {
     }
     product.isInCart = true;
     this.products.mycart.push(prod);
-
+    this.products.sendCount(this.products.mycart.length);
   }
-  removeFromCart(product)
-  {
-    this.count = this.count - 1;
-    this.products.count = this.count;
+  removeFromCart(product) {
+ 
     product.isInCart = false;
-  }
+    var index = -1;	
+     var comArr = this.products.getcart();
+     for( var i = 0; i < comArr.length; i++ ) {
+     if( comArr[i].name === product.name ) {
+     index = i;
+     break;
+     }
+     }
+     
+    this.products.mycart.splice(index, 1 );
+    this.products.sendCount(this.products.mycart.length);	
+    }
 }

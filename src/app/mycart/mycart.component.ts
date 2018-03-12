@@ -21,7 +21,7 @@ import { ProductsService } from '../products.service';
  <td>{{pro.category}}</td>
  <td>{{pro.desc}}</td>
  <td>{{pro.price}}</td>
- <td><button>Remove</button></td>
+ <td><button (click)="removeRow(pro)">Remove</button></td>
 </tr>
 
  
@@ -65,8 +65,23 @@ export class MycartComponent implements OnInit {
   constructor(private products: ProductsService) { }
 
   ngOnInit() {
-    debugger;
     this.prod = this.products.getcart();
   }
 
+  removeRow(pro){	
+ 
+    var index = -1;	
+    var comArr = this.products.getcart();
+    for( var i = 0; i < comArr.length; i++ ) {
+    if( comArr[i].name === pro.name ) {
+    index = i;
+    break;
+    }
+    }
+    
+    this.products.mycart.splice( index, 1 );	
+    this.products.sendCount(this.products.mycart.length);	
+    };
+  
+  
 }

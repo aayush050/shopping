@@ -4,25 +4,25 @@ import { Router } from '@angular/router';
 import { ProductsService } from '../products.service';
 
 @Component({
- selector: 'app-search',
- template: `
+  selector: 'app-search',
+  template: `
  <h1>Search</h1>
  <table border="0" width="250" height="120">
  <tr>
- <td class="color" width="1%"><input type="checkbox" id="footwear" [(ngModel)]=footwear ></td>
+ <td class="color" width="1%"><input type="checkbox" id="footwear" [(ngModel)]=query.footwear ></td>
  <td class="tdcolor" width="20%"><label class="container">Footwear
  <span class="checkmark"></span>
  </label></td>
  </tr>
  <tr>
- <td class="color" width="15%"><input type="checkbox" id="watches" [(ngModel)]=watches ></td>
+ <td class="color" width="15%"><input type="checkbox" id="watches" [(ngModel)]=query.watch ></td>
  <td class="tdcolor" width="100%"><label class="container">Watches
  <span class="checkmark"></span>
  </label></td>
  </tr>
  <tr>
- <td class="color" width="15%"> <input type="checkbox" id="tshirt" [(ngModel)]=tshirt ></td>
- <td class="tdcolor" width="100%"><label class="container">TShirts
+ <td class="color" width="15%"> <input type="checkbox" id="tshirt" [(ngModel)]=query.tshirt ></td>
+ <td class="tdcolor" width="100%"><label class="container">T-Shirts
  <span class="checkmark"></span>
  </label></td>
  </tr>
@@ -32,8 +32,8 @@ import { ProductsService } from '../products.service';
 
  
  `,
-styles: [
-  `
+  styles: [
+    `
  table
  {
  position: relative;
@@ -92,40 +92,32 @@ styles: [
  `]
 })
 export class SearchComponent implements OnInit {
-  
-public footwear=false;
-public tshirt=false;
-public watches=false;
-public product=[];
- constructor(private route:Router,private products:ProductsService) { }
 
- ngOnInit() {
-
-  
- }
-
- goToResult()
-{
-  if(this.footwear==true && this.tshirt==true)
-  {
-    this.products.search=this.products.getCatagoryProducts("footwear");
-    this.products.search=this.products.getCatagoryProducts("tshirt");
+  query = {
+    footwear: false,
+    tshirt: false,
+    watches: false
   }
-  
-   if(this.footwear==true)
-   {
-   this.products.search=this.products.getCatagoryProducts("footwear");
-   
-   }
-   if(this.tshirt==true)
-   {
-   this.products.search=this.products.getCatagoryProducts("tshirt");
-   }
-   if(this.watches==true)
-   {
-   this.products.search=this.products.getCatagoryProducts("watch");
-   }
+  public product = [];
 
-  this.route.navigate(['/web/result']);
-}
+  constructor(private route: Router, private products: ProductsService) { }
+
+  ngOnInit() {
+
+
+  }
+
+  goToResult() {
+    this.product = [];
+    for (const key in this.query) {
+      if (this.query.hasOwnProperty(key)) {
+        const category = this.query[key];
+        if (category) {
+          this.product = [...this.product, ...this.products.getCatagoryProducts(key)];
+        }
+      }
+    }
+    this.products.search=this.product;
+    this.route.navigate(['/web/result']);
+  }
 }

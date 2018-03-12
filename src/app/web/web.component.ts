@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsService } from '../products.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-web',
     template: `
  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
  <ul>
- <li ><img src="dfhn.jpg" alt='LOGO' ></li>
+ <li ><img alt='LOGO' ></li>
  <li><a (click)="goToDashboard()" class="active">Dashboard</a></li>
  <li><a (click)="goToAllProduct()">All Products<span class="w3-badge w3-red">{{this.products.product.length}}</span></a></li>
  <li><a (click)="goToSearch()" >Search</a></li>
- <li><a (click)="goToMyCart()">My Cart<span class="w3-badge w3-red">{{this.products.getcount()}}</span></a></li>
+ <li><a (click)="goToMyCart()">My Cart<span class="w3-badge w3-red">{{this.count.text}}</span></a></li>
  <li class="align"><a (click)="logout()">Logout</a></li>
  <li class="align"><a (click)="goToProfile()">Profile</a> </li>
 </ul>
@@ -64,12 +65,13 @@ img {
     ]
 })
 export class WebComponent implements OnInit {
-
+    count: number;
+    subscription: Subscription;
     constructor(private route: Router, private products: ProductsService) { }
 
     ngOnInit() {
-
-    }
+        this.subscription = this.products.getCount().subscribe(count => {this.count = count; });
+        }
     goToDashboard() {
         this.route.navigate(['/web/dashboard']);
     }

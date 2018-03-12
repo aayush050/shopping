@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs';
 @Injectable()
 export class ProductsService {
+  private subject = new Subject<any>();
  public count = 0;
  constructor() { }
  mycart = []
@@ -25,12 +27,10 @@ export class ProductsService {
  { "id":"14","isInCart": false, "url": "https://blog.codepen.io/wp-content/uploads/2017/03/codepen.jpg", "name": "CodePen", "category": "tshirt", "desc": "CodePen T-Shirt ", "price": "$10" },
  { "id":"15","isInCart": false, "url": "https://i.pinimg.com/736x/ab/88/f4/ab88f45ebe273c13f75c2a7891004b66--harry-potter-merchandise-harry-potter-shirts-womens.jpg", "name": "Bewakoof ", "category": "tshirt", "desc": "Harry Potter Shirts", "price": "$9" },
  ]
- getwatch() {
+ getproduct() {
  return this.product;
  }
- getcount() {
- return this.count;
- }
+ 
  getcart() {
  return this.mycart;
  }
@@ -38,7 +38,15 @@ getsearch()
 {
   return this.search;
 }
-
+sendCount(count: number) {
+  this.subject.next({ text: count });
+  }
+  clearCount() {
+  this.subject.next();
+  }
+  getCount(): Observable<any> {
+  return this.subject.asObservable();
+  }
 
 
   getCatagoryProducts(categoryName): any[]{
