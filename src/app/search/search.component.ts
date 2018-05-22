@@ -6,7 +6,7 @@ import { ProductsService } from '../products.service';
 @Component({
   selector: 'app-search',
   template: `
- <h1>Search</h1>
+ <h2>Search</h2>
  <table border="0" width="250" height="120">
  <tr>
  <td class="color" width="1%"><input type="checkbox" id="footwear" [(ngModel)]=query.footwear ></td>
@@ -41,6 +41,15 @@ import { ProductsService } from '../products.service';
  top:200px;
  
  }
+ h2{
+  color: grey;
+  font-size: 35px;
+  font-family: arial;
+  opacity: 0.7;
+  margin-left:30px;
+  margin-top: 30px;
+ 
+  }
  button
  {
   

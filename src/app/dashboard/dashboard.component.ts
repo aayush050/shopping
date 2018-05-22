@@ -9,22 +9,22 @@ import { Router } from '@angular/router';
  <div class="card">
  <img src="https://images-na.ssl-images-amazon.com/images/I/71FtEpgYHuL._UL1500_.jpg" alt="footwear" >
  <h1>Footwear</h1>
- <p class="title">Total 20 products</p>
- <p>Range from 1000 to 4000</p>
+ <p class="title">Total 5 products</p>
+ <p>Range from $39.99 to $50</p>
  <p><button (click)="footwear()">Show All Products</button></p>
  </div>
  <div class="card">
  <img src="http://www.alux.com/wp-content/uploads/2014/11/10-Best-Omega-Watches-of-All-Time.jpg" alt="footwear" >
  <h1>Watches</h1>
- <p class="title">Total 20 products</p>
- <p>Range from 3000 to 10,000</p>
+ <p class="title">Total 5 products</p>
+ <p>Range from $60 to $100</p>
  <p><button (click)="watch()">Show All Products</button></p>
  </div>
  <div class="card">
  <img src="https://cdn.shopify.com/s/files/1/1751/5037/products/CURLY-EDGE-COTTON-SUMMER-SHORT-T-SHIRT_800x.jpg?v=1510181243">
  <h1>Clothes</h1>
- <p class="title">Total 20 products</p>
- <p>Range from 500 to 10,000</p>
+ <p class="title">Total 5 products</p>
+ <p>Range from $5 to $10</p>
  <p><button (click)="cloth()">Show All Products</button></p>
  </div>
  </div>

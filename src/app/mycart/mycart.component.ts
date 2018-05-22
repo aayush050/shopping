@@ -4,7 +4,7 @@ import { ProductsService } from '../products.service';
 @Component({
   selector: 'app-mycart',
   template: `
-  
+  <div>
   <h2> My Cart</h2>
 
   <table style="width:50%">
@@ -27,11 +27,23 @@ import { ProductsService } from '../products.service';
 <br>
   <h3>Total Price:$ {{price}}</h3>
  
- 
+ </div>
   `,
   styles: [
     `
 
+    div{
+      background-color:#f0f0f5;
+    }
+    h2{
+      color: grey;
+      font-size: 35px;
+      font-family: arial;
+      opacity: 0.7;
+      margin-left:30px;
+      margin-top: 30px;
+     
+      }
 
     h3{
       font-family: Arial, Helvetica, sans-serif;

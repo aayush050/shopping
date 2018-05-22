@@ -8,14 +8,13 @@ import { Subscription } from 'rxjs';
     template: `
  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
  <ul>
- <li ><img width="100" src="https://t3.ftcdn.net/jpg/01/17/33/22/240_F_117332203_ekwDZkViF6M3itApEFRIH4844XjJ7zEb.jpg"alt='LOGO' ></li>
- <li><a (click)="goToDashboard()" class="active">Dashboard</a></li>
- <li><a (click)="goToAllProduct()">All Products<span class="w3-badge w3-red">{{this.products.product.length}}</span></a></li>
- <li><a (click)="goToSearch()" >Search</a></li>
- <li><a (click)="goToMyCart()">My Cart<span class="w3-badge w3-red">{{this.count.text}}</span></a></li>
- <li class="align"><a (click)="logout()">Logout</a></li>
- <li class="align"><a (click)="goToProfile()">Profile</a> </li>
-</ul>
+ <li ><img width="150" src="http://webneel.com/sites/default/files/images/manual/logo/28-brilliant-online-shopping-cart-store-logo.gif"alt='LOGO' ></li>
+ <li><a (click)="goToDashboard()" class="active"><b>Dashboard</b></a></li>
+ <li><a (click)="goToAllProduct()"><b>All Products</b><span class="w3-badge w3-red">{{this.products.product.length}}</span></a></li>
+ <li><a (click)="goToSearch()" ><b>Search</b></a></li>
+ <li><a (click)="goToMyCart()"><b>My Cart</b><span class="w3-badge w3-red">{{this.count.text}}</span></a></li>
+ <li class="align"><a (click)="logout()"><b>Logout</b></a></li>
+ </ul>
 
 <router-outlet></router-outlet>
 
@@ -40,7 +39,7 @@ img {
  margin: 0;
  padding: 0;
  overflow: hidden;
- background-color: #333;
+ background-color:white;
  }
  
  li {
@@ -49,7 +48,7 @@ img {
  
  li a {
  display: block;
- color: white;
+ color: black;
  text-align: center;
  padding: 14px 16px;
  font-family: Arial, Helvetica, sans-serif;
@@ -58,7 +57,8 @@ img {
  }
  
  li a:hover {
- background-color: #111;
+ background-color:black;
+ color:white;
  cursor:pointer;
  }
 `
@@ -87,9 +87,7 @@ export class WebComponent implements OnInit {
     logout() {
         this.route.navigate(['/login']);
     }
-    goToProfile() {
-        this.route.navigate(['/web/profile']);
-    }
+    
 
 
 
