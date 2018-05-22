@@ -77,9 +77,28 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
+    query = {
+        footwear: false,
+        tshirt: false,
+        watches: false
+      }
+      public product = [];
+
+
  constructor(private products:ProductsService,private route:Router) { }
 
  ngOnInit() {
+
+    this.product = [];
+    for (const key in this.query) {
+      if (this.query.hasOwnProperty(key)) {
+        const category = this.query[key];
+        if (category) {
+          this.product = [...this.product, ...this.products.getCatagoryProducts(key)];
+        }
+      }
+    }
+
  }
 footwear()
 {   

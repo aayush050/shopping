@@ -25,7 +25,7 @@ import { ProductsService } from '../products.service';
 </tr>
 </table>
 <br>
-  <h3>Price:$ {{price}} /-</h3>
+  <h3>Total Price:$ {{price}}</h3>
  
  
   `,

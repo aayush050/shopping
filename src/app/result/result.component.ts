@@ -9,7 +9,7 @@ import { ProductsService } from '../products.service';
   <img src="{{prod.url}}" alt="shoe">
   <h3>{{prod.name}}</h3>
   <p class="title">{{prod.desc}}</p>
-  <p>{{prod.price}}</p>
+  <p>$ {{prod.price}}</p>
   <p><button (click)="addToCart(prod)" *ngIf ="!prod.isInCart">Add to Cart</button></p>
       <p><button (click)="removeFromCart(prod)" *ngIf="prod.isInCart">Remove from Cart</button></p>
       </div>
@@ -112,9 +112,11 @@ export class ResultComponent implements OnInit {
   }
     addToCart(product) {
   
-      this.count = this.count + 1;
-      this.products.count = this.count;
-     
+      // this.count = this.count + 1;
+      // this.products.count = this.count;
+      // product.isInCart = true;
+      // this.products.mycart.push(product);
+      // this.products.sendCount(this.products.mycart.length);
       let prod = 
       {
         "name":product.name,
@@ -124,14 +126,23 @@ export class ResultComponent implements OnInit {
       }
       product.isInCart = true;
       this.products.mycart.push(prod);
-  
+      this.products.sendCount(this.products.mycart.length);
     }
     removeFromCart(product)
     {
-      this.count = this.count - 1;
-      this.products.count = this.count;
+      // this.count = this.count - 1;
+      // this.products.count = this.count;
+      // product.isInCart = false;
       product.isInCart = false;
+    var index = -1;
+    var comArr = this.products.getcart();
+    for (var i = 0; i < comArr.length; i++) {
+      if (comArr[i].name === product.name) {
+        index = i;
+        break;
+      }
     }
-  
-
+    this.products.mycart.splice(index, 1);
+    this.products.sendCount(this.products.mycart.length);
+    }
 }

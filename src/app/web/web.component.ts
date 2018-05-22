@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
     template: `
  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
  <ul>
- <li ><img alt='LOGO' ></li>
+ <li ><img width="100" src="https://t3.ftcdn.net/jpg/01/17/33/22/240_F_117332203_ekwDZkViF6M3itApEFRIH4844XjJ7zEb.jpg"alt='LOGO' ></li>
  <li><a (click)="goToDashboard()" class="active">Dashboard</a></li>
  <li><a (click)="goToAllProduct()">All Products<span class="w3-badge w3-red">{{this.products.product.length}}</span></a></li>
  <li><a (click)="goToSearch()" >Search</a></li>

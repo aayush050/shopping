@@ -101,12 +101,12 @@ import { ProductsService } from '../products.service';
 })
 export class AllproductComponent implements OnInit {
   public change = true;
-  public product=[];
+  public product = [];
   public count = 0;
-  price:number;
-  desc='';
-  name='';
-  category='';
+  price: number;
+  desc = '';
+  name = '';
+  category = '';
   constructor(private products: ProductsService) { }
 
   ngOnInit() {
@@ -114,26 +114,26 @@ export class AllproductComponent implements OnInit {
 
   }
   addToCart(product) {
-  
-    
-   
+
+
+
     product.isInCart = true;
     this.products.mycart.push(product);
     this.products.sendCount(this.products.mycart.length);
   }
   removeFromCart(product) {
- 
+
     product.isInCart = false;
-    var index = -1;	
-     var comArr = this.products.getcart();
-     for( var i = 0; i < comArr.length; i++ ) {
-     if( comArr[i].name === product.name ) {
-     index = i;
-     break;
-     }
-     }
-     
-    this.products.mycart.splice(index, 1 );
-    this.products.sendCount(this.products.mycart.length);	
+    var index = -1;
+    var comArr = this.products.getcart();
+    for (var i = 0; i < comArr.length; i++) {
+      if (comArr[i].name === product.name) {
+        index = i;
+        break;
+      }
     }
+
+    this.products.mycart.splice(index, 1);
+    this.products.sendCount(this.products.mycart.length);
+  }
 }
